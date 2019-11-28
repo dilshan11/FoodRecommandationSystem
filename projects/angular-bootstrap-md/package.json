@@ -1,0 +1,13 @@
+{
+  "name": "angular-bootstrap-md",
+  "repository": "https://github.com/mdbootstrap/Angular-Bootstrap-with-Material-Design",
+  "version": "8.6.0",
+  "schematics": "./schematics/collection.json",
+  "files": [
+    "**/*"
+  ],
+  "peerDependencies": {
+    "@angular/common": "^8.0.0",
+    "@angular/core": "^8.0.0"
+  }
+}

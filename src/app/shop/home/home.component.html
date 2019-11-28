@@ -1,0 +1,74 @@
+<div class="container">
+    <div class="row"> 
+        <div class="col-md-12" style="height: 20px;">
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row"> 
+        <div class="col-md-6">
+             
+
+            <mdb-card>
+                <!--Card image-->
+                 
+                <!--Card content-->
+                <mdb-card-body>
+              
+                  <!--Title-->
+                  <!-- <mdb-card-title>
+                      <div class="d-flex">
+                    <h4>ADD Foods</h4>
+                    <button type="button" mdbBtn color="primary" mdbWavesEffect>ADD</button>
+                    </div>
+                   
+                  </mdb-card-title> -->
+                  <div class="d-flex">
+                      <div ><h1>Foods</h1></div>
+                      <div class="ml-auto">
+                            <button type="button" mdbBtn color="primary" mdbWavesEffect>+</button>
+
+                      </div>
+                  </div>
+                  
+                    <div class="d-flex">
+                         <div class="fdiv ">
+                        <form  [formGroup]="foodForm">
+                            <!-- Grid row -->
+                             
+                              <!-- Default input -->
+                               
+                              <div class="col-sm-10 m-0 p-0 mt-2">
+                                <input autocomplete="off" #fdin (keyup)="onkeyup($event,fdin)"  formControlName="food" mdbInput type="email" class="form-control" id="inputEmail3" placeholder="rice">
+                                <ul id=overlay class="list-group" *ngIf="listview"> 
+                                        <li *ngFor="let f of refoodlist" class="list-group-item" (click)="listClick(f,fdin) "><img style="width: 20px; height: 20px;" [src]="f.photo.thumb" alt=""> {{f.food_name}}</li>
+                                        
+                                      </ul >
+                            </div>
+                            
+                        </form>
+                    </div>
+                    <div class="sdiv mt-3">300</div>
+                    <div class="sdiv">
+                            <button type="button" mdbBtn color="danger" mdbWavesEffect>clear</button>
+
+                    </div>
+                    </div>
+                    
+
+                  
+                   
+              
+                  <!-- <a href="#" mdbBtn color="primary" mdbWavesEffect>Button</a> -->
+                </mdb-card-body>
+              </mdb-card>
+
+
+        </div>
+        <div class="col-md-6 blue">
+w
+        </div>
+         
+    </div>
+</div>

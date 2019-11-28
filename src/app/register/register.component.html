@@ -1,0 +1,245 @@
+<button type="button" mdbBtn color="default" rounded="true" data-toggle="modal" data-target="#basicExample"
+  (click)="frame.show()" mdbWavesEffect>Register
+</button>
+
+<div mdbModal  #frame="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog"
+  aria-labelledby="myModalLabel" aria-hidden="true" style="overflow-y: scroll;">
+  <div class="modal-dialog yellow" role="document">
+    <div class="modal-content" style="width: 550px;">
+      <div class="modal-header text-center teal darken-2">
+
+
+        <div class=" ml-3 mr-1" #divstudent style="width: 50%;background-color:#004d40;"
+          (click)="studentClick(divshop,divstudent)">
+          <mdb-icon fas icon="user-graduate" class="prefix grey-text"></mdb-icon>
+
+          <!-- <label for="defaultForm-email">student</label> -->
+        </div>
+
+
+        <div class="mr-3" #divshop style="width: 50%;background-color: rgb(2, 131, 136);"
+          (click)="shopClick(divshop,divstudent)">
+          <mdb-icon fas icon="store" class="prefix grey-text"></mdb-icon>
+
+          <!-- <label for="defaultForm-email">student</label> -->
+        </div>
+
+        <!-- <h4 class="modal-title w-100 font-weight-bold"><p class="psignup">Sign up</p> </h4> -->
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+     <!-- start student registration from -->
+      <div class="modal-body mx-3" *ngIf="who">
+        <div class="md-form mb-5">
+          <mdb-icon fas icon="user" class="prefix grey-text"></mdb-icon>
+          <input type="text" id="orangeForm-name6" class="form-control" [formControl]="stuname" mdbInput mdbValidate>
+          <label for="orangeForm-name6">Your name</label>
+          <mdb-error *ngIf="stuname.invalid && (stuname.dirty || stuname.touched)">
+            Input invalid
+          </mdb-error>
+          <mdb-success *ngIf="stuname.valid && (stuname.dirty || stuname.touched)">
+            Input valid
+          </mdb-success>
+        </div>
+
+        <div class="md-form mb-5">
+          <mdb-icon fas icon="envelope" class="prefix grey-text"></mdb-icon>
+          <input type="email" id="orangeForm-email" class="form-control" [formControl]="stuemail" mdbInput mdbValidate>
+          <label for="orangeForm-email">Your email</label>
+          <mdb-error *ngIf="stuemail.invalid && (stuemail.dirty || stuemail.touched)">Input
+            invalid
+          </mdb-error>
+          <mdb-success *ngIf="stuemail.valid && (stuemail.dirty || stuemail.touched)">Input
+            valid
+          </mdb-success>
+        </div>
+
+
+        <div class="md-form mb-5">
+          <mdb-icon fas icon="user-clock" class="prefix grey-text"></mdb-icon>
+          <input type="text" id="orangeForm-name2" class="form-control" [formControl]="stuage" mdbInput mdbValidate>
+          <label for="orangeForm-name2">Your age</label>
+          <mdb-error *ngIf="stuage.invalid && (stuage.dirty || stuage.touched)">
+            Input invalid
+          </mdb-error>
+          <mdb-success *ngIf="stuage.valid && (stuage.dirty || stuage.touched)">
+            Input valid
+          </mdb-success>
+        </div>
+
+        <div class="md-form mb-5">
+          <mdb-icon fas icon="male" class="prefix grey-text"></mdb-icon>
+          <input type="text" id="orangeForm-name4" class="form-control" [formControl]="stuheight" mdbInput mdbValidate>
+          <label for="orangeForm-name4">Your height</label>
+          <mdb-error *ngIf="stuheight.invalid && (stuheight.dirty || stuheight.touched)">
+            Input invalid
+          </mdb-error>
+          <mdb-success *ngIf="stuheight.valid && (stuheight.dirty || stuheight.touched)">
+            Input valid
+          </mdb-success>
+        </div>
+
+        <div class="md-form mb-5">
+          <mdb-icon fas icon="weight" class="prefix grey-text"></mdb-icon>
+          <input type="text" id="orangeForm-name1" class="form-control" [formControl]="stuweight" mdbInput mdbValidate>
+          <label for="orangeForm-name1">Your Weight</label>
+          <mdb-error *ngIf="stuweight.invalid && (stuweight.dirty || stuweight.touched)">
+            Input invalid
+          </mdb-error>
+          <mdb-success *ngIf="stuweight.valid && (stuweight.dirty || stuweight.touched)">
+            Input valid
+          </mdb-success>
+        </div>
+
+        <div class="md-form mb-5">
+          <mdb-icon fas icon="venus-mars" class="prefix grey-text"></mdb-icon>
+          <input type="text" id="orangeForm-name3" class="form-control" [formControl]="gender" mdbInput mdbValidate>
+          <label for="orangeForm-name3">Your Gender</label>
+          <mdb-error *ngIf="gender.invalid && (stuweight.dirty || gender.touched)">
+            Input invalid
+          </mdb-error>
+          <mdb-success *ngIf="gender.valid && (stuweight.dirty || gender.touched)">
+            Input valid
+          </mdb-success>
+        </div>
+
+
+        <div class="md-form mb-5">
+          <mdb-icon fas icon="key" class="prefix grey-text"></mdb-icon>
+          <input type="password" id="orangeForm-pass" class="form-control" [formControl]="password" mdbInput
+            mdbValidate>
+          <label for="orangeForm-pass">Your password</label>
+          <mdb-error *ngIf="password.invalid && (password.dirty || password.touched)">
+            Input invalid
+          </mdb-error>
+          <mdb-success *ngIf="password.valid && (password.dirty || password.touched)">
+            Input valid
+          </mdb-success>
+        </div>
+
+
+        <div class="md-form mb-4">
+          <mdb-icon fas icon="lock" class="prefix grey-text"></mdb-icon>
+          <input type="password" id="orangeForm-pass2" class="form-control" [formControl]="repassword" mdbInput
+            mdbValidate>
+          <label for="orangeForm-pass2">Re Type password</label>
+          <mdb-error *ngIf="repassword.invalid && (repassword.dirty || repassword.touched)">
+            Input invalid
+          </mdb-error>
+          <mdb-success *ngIf="repassword.valid && (repassword.dirty || repassword.touched)">
+            Input valid
+          </mdb-success>
+        </div>
+
+      </div>
+<!-- shop registration start here -->
+      <div class="modal-body mx-3" *ngIf="!who">
+          
+        <div class="md-form mb-5">
+            <mdb-icon fas icon="user-tie" class="prefix grey-text"></mdb-icon>
+            <input type="text" id="orangeForm-passa1" class="form-control" [formControl]="shownerName" mdbInput
+              mdbValidate>
+            <label for="orangeForm-passa1">Owner Name</label>
+            <mdb-error *ngIf="shownerName.invalid && (shownerName.dirty || shownerName.touched)">
+              Input invalid
+            </mdb-error>
+            <mdb-success *ngIf="shownerName.valid && (shownerName.dirty || shownerName.touched)">
+              Input valid
+            </mdb-success>
+          </div>
+      
+      <div class="md-form mb-5">
+          <mdb-icon fas icon="store" class="prefix grey-text"></mdb-icon>
+          <input type="text" id="orangeForm-passa2" class="form-control" [formControl]="shName" mdbInput
+            mdbValidate>
+          <label for="orangeForm-passa2">Shop Name</label>
+          <mdb-error *ngIf="shName.invalid && (shName.dirty || shName.touched)">
+            Input invalid
+          </mdb-error>
+          <mdb-success *ngIf="shName.valid && (shName.dirty || shName.touched)">
+            Input valid
+          </mdb-success>
+        </div>
+
+        <div class="md-form mb-5">
+            <mdb-icon fas icon="phone-square" class="prefix grey-text"></mdb-icon>
+            <input type="text" id="orangeForm-passa3" class="form-control" [formControl]="shtel" mdbInput
+              mdbValidate>
+            <label for="orangeForm-passa3">Telephone</label>
+            <mdb-error *ngIf="shtel.invalid && (shtel.dirty || shtel.touched)">
+              Input invalid
+            </mdb-error>
+            <mdb-success *ngIf="shtel.valid && (shtel.dirty || shtel.touched)">
+              Input valid
+            </mdb-success>
+          </div>
+
+            
+            <div class="md-form mb-5">
+                <mdb-icon fas icon="map-marker" class="prefix grey-text"></mdb-icon>
+                <input type="text" id="orangeForm-passa5" class="form-control" [formControl]="shaddress" mdbInput
+                  mdbValidate>
+                <label for="orangeForm-passa5">Address</label>
+                <mdb-error *ngIf="shaddress.invalid && (shaddress.dirty || shaddress.touched)">
+                  Input invalid
+                </mdb-error>
+                <mdb-success *ngIf="shaddress.valid && (shaddress.dirty || shaddress.touched)">
+                  Input valid
+                </mdb-success>
+              </div>
+
+              <div class="md-form mb-5">
+                  <mdb-icon fas icon="envelope" class="prefix grey-text"></mdb-icon>
+                  <input type="text" id="orangeForm-passa6" class="form-control" [formControl]="shemail" mdbInput
+                    mdbValidate>
+                  <label for="orangeForm-passa6">Email</label>
+                  <mdb-error *ngIf="shemail.invalid && (shaddress.dirty || shemail.touched)">
+                    Input invalid
+                  </mdb-error>
+                  <mdb-success *ngIf="shemail.valid && (shaddress.dirty || shemail.touched)">
+                    Input valid
+                  </mdb-success>
+                </div>
+
+                <div class="md-form mb-5">
+                    <mdb-icon fas icon="key" class="prefix grey-text"></mdb-icon>
+                    <input type="password" id="orangeForm-passa7" class="form-control" [formControl]="shpassword" mdbInput
+                      mdbValidate>
+                    <label for="orangeForm-passa7">Password</label>
+                    <mdb-error *ngIf="shpassword.invalid && (shpassword.dirty || shpassword.touched)">
+                      Input invalid
+                    </mdb-error>
+                    <mdb-success *ngIf="shpassword.valid && (shpassword.dirty || shpassword.touched)">
+                      Input valid
+                    </mdb-success>
+                </div>
+
+                <div class="md-form mb-5">
+                    <mdb-icon fas icon="unlock" class="prefix grey-text"></mdb-icon>
+                    <input type="password" id="orangeForm-passa8" class="form-control" [formControl]="shrepassword" mdbInput
+                      mdbValidate>
+                    <label for="orangeForm-passa8">Re Type Password</label>
+                    <mdb-error *ngIf="shrepassword.invalid && (shrepassword.dirty || shrepassword.touched)">
+                      Input invalid
+                    </mdb-error>
+                    <mdb-success *ngIf="shrepassword.valid && (shrepassword.dirty || shrepassword.touched)">
+                      Input valid
+                    </mdb-success>
+                </div>
+    </div>
+
+
+
+
+
+
+
+
+
+      <div class="modal-footer d-flex justify-content-center">
+        <button mdbBtn color="deep-orange" class="waves-light" (click)="getRegister()" mdbWavesEffect>Sign up</button>
+      </div>
+    </div>
+  </div>
+</div>
