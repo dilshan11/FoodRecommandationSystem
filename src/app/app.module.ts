@@ -13,6 +13,7 @@ import { StdashboardsComponent } from './students/stdashboards/stdashboards.comp
 import { ShopdashboardComponent } from './shop/shopdashboard/shopdashboard.component';
 import { NewsComponent } from './students/news/news.component';
 import { HomeComponent } from './shop/home/home.component';
+import { PiechartComponent } from './shop/piechart/piechart.component';
  
 
 @NgModule({
@@ -25,6 +26,7 @@ import { HomeComponent } from './shop/home/home.component';
     ShopdashboardComponent,
     NewsComponent,
     HomeComponent,
+    PiechartComponent,
  
      
      

@@ -10,7 +10,7 @@ export class StudentService {
 
   studentRegister(regstudent){
     console.log(regstudent);
-    return this.httpClient.post('http://localhost:8080/student/Register',regstudent);
+    return this.httpClient.post('http://localhost:8080/student/Register',regstudent,{responseType:'text'});
   }
 
   studentlogging(studentlog){

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { StudentService } from '../student.service';
 import { FoodproviderService } from '../foodprovider.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,7 @@ export class LoginComponent implements OnInit {
     loginFormModalPassword: new FormControl('', Validators.required)
   });
 
-constructor(private studentservice:StudentService,private foodproviderservice:FoodproviderService){
+constructor(private studentservice:StudentService,private foodproviderservice:FoodproviderService,private router:Router){
 
 }
   ngOnInit() {
@@ -49,7 +50,7 @@ reformatdataforprovider(){
 }
 
   getlogin(){
-
+    // this.router.navigate(['/shdashboard'])
     if(this.what){
     this.studentservice.studentlogging(this.reformatdata()).
     subscribe(data=>{
@@ -60,7 +61,11 @@ reformatdataforprovider(){
     else{
      this.foodproviderservice.makelogging(this.reformatdataforprovider()).
      subscribe(data=>{
-       console.log(typeof data);
+      console.log(data);
+        if(data!=null){
+          this.router.navigate(['/shdashboard']);
+        }
+      
      })
     }
   }

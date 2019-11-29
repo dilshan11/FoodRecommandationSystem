@@ -11,7 +11,7 @@ import { FoodproviderService } from '../foodprovider.service';
 export class RegisterComponent implements OnInit {
 
   who=true;
-  // isregistered=true;
+  isregistered=true;   // deside register is appear or not
 
   shopForm=new FormGroup({
     shownerName:new FormControl('',Validators.required),
@@ -84,18 +84,28 @@ shopClick(divshop,divstudent){
   
 }
 
-  getRegister(){
+  getRegister(frame){
    
+    frame.hide();
     if(this.who){
     this.studentservice.studentRegister(this.reformatestudent()).
     subscribe(data=>{
       console.log(data);
+      if(data=='successfull'){
+        frame.hide();
+        console.log(this.isregistered);
+      }
     });
   }
   else{
    this.foodproviderservice.makeRegister(this.reformatsfoodproviders()).
    subscribe(data=>{
      console.log(data);
+     if(data=='successfull'){
+      this.isregistered=false;
+      console.log(this.isregistered);
+
+    }
    })
     }
   }

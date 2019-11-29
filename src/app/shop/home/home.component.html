@@ -27,7 +27,7 @@
                   <div class="d-flex">
                       <div ><h1>Foods</h1></div>
                       <div class="ml-auto">
-                            <button type="button" mdbBtn color="primary" mdbWavesEffect>+</button>
+                            <button (click)="addfood(fdin)" type="button" mdbBtn color="primary" mdbWavesEffect>+</button >
 
                       </div>
                   </div>
@@ -44,14 +44,14 @@
                                 <ul id=overlay class="list-group" *ngIf="listview"> 
                                         <li *ngFor="let f of refoodlist" class="list-group-item" (click)="listClick(f,fdin) "><img style="width: 20px; height: 20px;" [src]="f.photo.thumb" alt=""> {{f.food_name}}</li>
                                         
-                                      </ul >
+                                </ul >
                             </div>
                             
                         </form>
                     </div>
-                    <div class="sdiv mt-3">300</div>
+                    <div class="sdiv mt-3">{{lastfoodcalorie}}</div>
                     <div class="sdiv">
-                            <button type="button" mdbBtn color="danger" mdbWavesEffect>clear</button>
+                            <button type="button" mdbBtn color="danger" mdbWavesEffect (click)="cleardata(fdin)">clear</button>
 
                     </div>
                     </div>
@@ -63,12 +63,30 @@
                   <!-- <a href="#" mdbBtn color="primary" mdbWavesEffect>Button</a> -->
                 </mdb-card-body>
               </mdb-card>
+              <div style="height: 15px;"></div>
+              <div>
+                    <ul class="list-group blue">
+                            <li class="list-group-item" *ngFor="let f of choosenfoodlist">{{f.fname}}  (<span>{{f.fcalori}}</span>)</li>
+                             
+                     </ul>
+              </div>
+              <div class="ml-4 mt-3">amount of calory={{amount}}</div>
 
 
         </div>
-        <div class="col-md-6 blue">
-w
+        <div class="col-md-6 ">
+
+                <app-piechart></app-piechart>
+
         </div>
          
     </div>
 </div>
+
+<!-- <div class="container">
+    <div class="row">
+        <div class="col-md-">
+
+        </div>
+    </div>
+</div> -->
