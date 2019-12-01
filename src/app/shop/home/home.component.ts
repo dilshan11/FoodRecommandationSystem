@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { FoodproviderService } from 'src/app/foodprovider.service';
+import { DataService } from '../data.service';
 
 @Component({
   selector: 'app-home',
@@ -9,6 +10,7 @@ import { FoodproviderService } from 'src/app/foodprovider.service';
 })
 export class HomeComponent implements OnInit {
 
+   meal:string;
   amount=0;
   choosenfoodlist=[];
   foodcalorie;
@@ -19,7 +21,7 @@ export class HomeComponent implements OnInit {
     foodForm=new FormGroup({
       food:new FormControl()
     });
-  constructor(private foodprovide:FoodproviderService) { }
+  constructor(private foodprovide:FoodproviderService,private dataservice:DataService) { }
      food;
   ngOnInit() {
   }
@@ -59,7 +61,7 @@ export class HomeComponent implements OnInit {
       fname:fdin.value,
       fcalori:this.lastfoodcalorie
     }
-    console.log("addfood");
+   
      this.choosenfoodlist.push(food);
      fdin.value=null;
      this.lastfoodcalorie=null;
@@ -67,6 +69,7 @@ export class HomeComponent implements OnInit {
       for(let a of this.choosenfoodlist){
         this.amount=this.amount+a.fcalori;
       }
+      this.dataservice.changeMessage(this.choosenfoodlist);
   }
   cleardata(fdin){
     fdin.value=null;
@@ -74,5 +77,28 @@ export class HomeComponent implements OnInit {
 
     console.log('clearrrrrrrrrrrr');
   }
+  choosemeal(meal){
+    this.meal=meal
+  }
+  savechanges(){
+    // console.log(this.choosenfoodlist);
+    // console.log(sessionStorage.getItem('fpID'));
+    // console.log(this.meal);
+
+    let savefood={
+      provideId:sessionStorage.getItem('fpID'),
+      meal:this.meal,
+      camount:this.amount,
+      cfarr:this.choosenfoodlist
+    }
+    console.log(savefood);
+    this.foodprovide.sendmealdetails(savefood).
+    subscribe(data=>{
+      console.log(data);
+    })
+
+  }
+
+  
 
 }

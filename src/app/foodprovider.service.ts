@@ -38,4 +38,8 @@ export class FoodproviderService {
 
 
    }
+
+   sendmealdetails(mealdetails){
+     return this.httpClient.post('http://localhost:8080/foodprovide/MealDetails',mealdetails)
+   }
 }

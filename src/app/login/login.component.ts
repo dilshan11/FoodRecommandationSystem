@@ -59,10 +59,14 @@ reformatdataforprovider(){
     
     }
     else{
+       let bdata:any;
      this.foodproviderservice.makelogging(this.reformatdataforprovider()).
      subscribe(data=>{
       console.log(data);
         if(data!=null){
+          bdata=data;
+          sessionStorage.setItem("fpID",bdata.providerId);
+          console.log(bdata.providerId);
           this.router.navigate(['/shdashboard']);
         }
       
