@@ -1,7 +1,12 @@
+
+.ffdiv{
+    height: 20px;
+}
 .fdiv{
     background-image: url('../../assets/taska_ae_1.gif');
     width: 500px;
     height: 650px;
+    
 }
 .fp{
     margin-top: 50px;
@@ -18,6 +23,40 @@
     height: 30px; 
 
 }
+
+@media only screen and (max-width: 570px) {
+   .fp{
+    margin-top: 50px;
+    margin-left: 40px;
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+   }
+   .sdiv{
+    width: 130px;
+    margin-left: 100px;
+    font-size: 40px;
+    color: #c8ff00;
+    height: 30px; 
+}
+.fdiv{
+    background-image: url('../../assets/taska_ae_1.gif');
+    
+    background-size: 400px 
+    // width: 200px;
+    // height: 100px;
+}
+.madiv{
+   background-color: rgb(9, 134, 86);
+}
+.fotdiv{
+    background-color: rgb(9, 134, 86);
+    height: 60px;
+}
+  }
+
+
+
 // .sdiv:hover{
 //     background-color: rgba(151, 255, 32, 0.267);
 // }

@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { StudentService } from '../student.service';
 import { FoodproviderService } from '../foodprovider.service';
 import { Router } from '@angular/router';
+import { StudataService } from '../students/studata.service';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,7 @@ export class LoginComponent implements OnInit {
     loginFormModalPassword: new FormControl('', Validators.required)
   });
 
-constructor(private studentservice:StudentService,private foodproviderservice:FoodproviderService,private router:Router){
+constructor(private studentservice:StudentService,private foodproviderservice:FoodproviderService,private router:Router,private studataservice:StudataService){
 
 }
   ngOnInit() {
@@ -48,29 +49,62 @@ reformatdataforprovider(){
   }
   return formdata;
 }
-
+message:any;
   getlogin(){
+     let bdata:any;
     // this.router.navigate(['/shdashboard'])
     if(this.what){
+      if(this.validatingForm.valid){
     this.studentservice.studentlogging(this.reformatdata()).
     subscribe(data=>{
-      console.log(data);
+      this.message=data;
+
+     if(data!=null){ 
+      
+       bdata=data;
+       sessionStorage.setItem("stID",bdata.studentId);
+       
+       this.studataservice.student=data;
+       
+        this.router.navigate(['/stdashboard']);
+     }else{
+      alert("try again");
+  }
+      
     });
+  }else{
+    console.log(this.message);
+    if(this.validatingForm.invalid){
+      alert("something is wrong");
+    }
     
+    
+  }
     }
     else{
+      if(this.validatingForm.valid){
        let bdata:any;
      this.foodproviderservice.makelogging(this.reformatdataforprovider()).
      subscribe(data=>{
-      console.log(data);
+      this.message=data;
         if(data!=null){
+         
           bdata=data;
           sessionStorage.setItem("fpID",bdata.providerId);
-          console.log(bdata.providerId);
+        
           this.router.navigate(['/shdashboard']);
+        }else{
+            alert("try again");
         }
-      
      })
+    }else{
+      console.log(this.message);
+      if(this.validatingForm.invalid){
+        alert("something is wrong");
+      }
+     
+      
+    }
     }
   }
 

@@ -4,8 +4,8 @@
 
 <div mdbModal  #frame="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog"
   aria-labelledby="myModalLabel" aria-hidden="true" style="overflow-y: scroll;">
-  <div class="modal-dialog yellow" role="document">
-    <div class="modal-content" style="width: 550px;">
+  <div class="modal-dialog " role="document">
+    <div class="modal-content rdiv"  >
       <div class="modal-header text-center teal darken-2">
 
 
@@ -56,6 +56,24 @@
         </div>
 
 
+        <div class="md-form mb-5 d-flex">
+          
+          <div class="  mr-5" style="width: 20px;">
+          <mdb-icon fas icon="venus-mars" class="prefix grey-text"></mdb-icon>
+        </div>
+          <div class="mt-4   custom-control custom-radio" style="width: 40%;">
+            <input  [formControl]="gender" type="radio" value="male" class="custom-control-input" id="defaultUnchecked" name="defaultExampleRadios" mdbInput>
+            <label class="custom-control-label" for="defaultUnchecked">Male</label>
+          </div>
+             
+          <div class="mt-4   custom-control custom-radio" style="width: 40%;">
+            <input  [formControl]="gender" type="radio" value="female" class="custom-control-input" id="defaultChecked" name="defaultExampleRadios"   mdbInput>
+            <label class="custom-control-label" for="defaultChecked">Female</label>
+          </div>
+          
+  
+        </div>
+
         <div class="md-form mb-5">
           <mdb-icon fas icon="user-clock" class="prefix grey-text"></mdb-icon>
           <input type="text" id="orangeForm-name2" class="form-control" [formControl]="stuage" mdbInput mdbValidate>
@@ -92,16 +110,23 @@
           </mdb-success>
         </div>
 
-        <div class="md-form mb-5">
-          <mdb-icon fas icon="venus-mars" class="prefix grey-text"></mdb-icon>
-          <input type="text" id="orangeForm-name3" class="form-control" [formControl]="gender" mdbInput mdbValidate>
-          <label for="orangeForm-name3">Your Gender</label>
-          <mdb-error *ngIf="gender.invalid && (stuweight.dirty || gender.touched)">
-            Input invalid
-          </mdb-error>
-          <mdb-success *ngIf="gender.valid && (stuweight.dirty || gender.touched)">
-            Input valid
-          </mdb-success>
+       
+         
+        <div class="md-form mb-5 ">
+          <mdb-icon fas icon="running" class="prefix grey-text mt-1"></mdb-icon>
+          
+
+          <div class="ml-4">
+          <select  class="browser-default custom-select " [formControl]="activelevel">
+            
+            <option  value="1">Little to no exercise</option>
+            <option value="2">Light exercise</option>
+            <option value="3">Moderate exercise</option>
+            <option value="4">Heavy exercise</option>
+            <option value="5">very Heavy exercise</option>
+          </select>
+        </div>
+          
         </div>
 
 

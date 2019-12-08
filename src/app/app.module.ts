@@ -14,6 +14,8 @@ import { ShopdashboardComponent } from './shop/shopdashboard/shopdashboard.compo
 import { NewsComponent } from './students/news/news.component';
 import { HomeComponent } from './shop/home/home.component';
 import { PiechartComponent } from './shop/piechart/piechart.component';
+import { MealhomeComponent } from './shop/mealhome/mealhome.component';
+import { DashComponent } from './students/dash/dash.component';
  
 
 @NgModule({
@@ -27,6 +29,8 @@ import { PiechartComponent } from './shop/piechart/piechart.component';
     NewsComponent,
     HomeComponent,
     PiechartComponent,
+    MealhomeComponent,
+    DashComponent,
  
      
      

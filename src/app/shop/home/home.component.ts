@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { FoodproviderService } from 'src/app/foodprovider.service';
 import { DataService } from '../data.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -9,8 +10,8 @@ import { DataService } from '../data.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-
-   meal:string;
+  mealdata;
+  meal:number=0;
   amount=0;
   choosenfoodlist=[];
   foodcalorie;
@@ -21,9 +22,18 @@ export class HomeComponent implements OnInit {
     foodForm=new FormGroup({
       food:new FormControl()
     });
-  constructor(private foodprovide:FoodproviderService,private dataservice:DataService) { }
+  constructor(private foodprovide:FoodproviderService,private dataservice:DataService, private route:ActivatedRoute) { }
      food;
   ngOnInit() {
+      this.meal=parseInt(this.route.snapshot.paramMap.get('id'));
+      // this methode get all details
+      this.foodprovide.getallthemealdetails(this.meal,sessionStorage.getItem('fpID')).
+      subscribe(data=>{
+        console.log(data);
+        this.mealdata=data;
+      });
+
+     
   }
   onkeyup(event,fdin){
     this.food={
@@ -77,9 +87,7 @@ export class HomeComponent implements OnInit {
 
     console.log('clearrrrrrrrrrrr');
   }
-  choosemeal(meal){
-    this.meal=meal
-  }
+  
   savechanges(){
     // console.log(this.choosenfoodlist);
     // console.log(sessionStorage.getItem('fpID'));
@@ -98,6 +106,8 @@ export class HomeComponent implements OnInit {
     })
 
   }
+
+
 
   
 

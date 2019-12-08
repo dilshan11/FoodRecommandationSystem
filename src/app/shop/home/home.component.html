@@ -1,18 +1,18 @@
 <div class="container">
     <div class="row"> 
-        <div class="col-md-4 col-12 fdiv  " >
-            <div (click)="choosemeal('Breakfast')"  class="pt-3 d-flex btn  info-color ml-0 mt-5 mr-5 mb-5 example hoverable" style="height: 100px;width: 100%;">
+        <div class="col-md-12 col-12 fdiv" *ngIf="meal==1?true:false" >
+            <div    class="justify-content-center pt-3 d-flex btn  info-color ml-0 mt-5 mr-5 mb-5 example hoverable" style="height: 100px;width: 100%;">
                 <p style="font-size: 40px;">Breakfast</p><img src="https://img.icons8.com/clouds/100/000000/sun.png">
                
             </div >
         </div>
-        <div class="col-md-4" >
-            <div   class="d-flex justify-content-between success-color ml-0 mt-5 mr-5 mb-5 example hoverable btn" (click)="choosemeal('Lunch')"  style="height: 100px;width: 100%;">
+        <div class="col-md-12" *ngIf="meal==2?true:false">
+            <div   class="justify-content-center d-flex   success-color ml-0 mt-5 mr-5 mb-5 example hoverable btn" (click)="choosemeal('Lunch')"  style="height: 100px;width: 100%;">
                 <p style="font-size: 40px;">Lunch</p><img class="" src="https://img.icons8.com/cute-clipart/64/000000/sun.png">
             </div  >
         </div>
-        <div class="col-md-4" >
-            <div  class="d-flex justify-content-between stylish-color ml-0 mt-5 mr-5 mb-5 example hoverable btn" (click)="choosemeal('Dinner')"  style="height: 100px;width: 100%;">
+        <div class="col-md-12" *ngIf="meal==3?true:false" >
+            <div  class="justify-content-center d-flex   stylish-color ml-0 mt-5 mr-5 mb-5 example hoverable btn" (click)="choosemeal('Dinner')"  style="height: 100px;width: 100%;">
                 <p style="font-size: 40px;">Dinner </p> <img src="https://img.icons8.com/clouds/100/000000/bright-moon.png">
 
             </div >
@@ -87,6 +87,16 @@
 
         </div>
          
+    </div>
+</div>
+
+<div class="container" >
+    <div class="row">
+        <div class="col-md-6" *ngFor="let det of mealdata">
+            <ul class="list-group">
+                <li class="list-group-item d-flex justify-content-around" *ngFor="let foods of det.cfarr"> <span  >{{foods.fname}}</span> <span>{{foods.fcalori}}</span> </li>
+              </ul>
+        </div>
     </div>
 </div>
 

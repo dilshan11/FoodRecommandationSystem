@@ -12,7 +12,7 @@ export class FoodproviderService {
    return this.httpClient.post('http://localhost:8080/foodprovide/Register',foodprovider,{responseType:'text'});
   }
   makelogging(foodprovider){
-    // console.log(foodprovider);
+    
     return this.httpClient.post('http://localhost:8080/foodprovide/logging',foodprovider);
   }
 
@@ -39,7 +39,14 @@ export class FoodproviderService {
 
    }
 
+   getallthemealdetails(id,providerid){
+    
+     
+    return this.httpClient.get('http://localhost:8080/foodprovide/foodDetails/'+id+'/'+providerid);
+ }
    sendmealdetails(mealdetails){
      return this.httpClient.post('http://localhost:8080/foodprovide/MealDetails',mealdetails)
    }
+
+  
 }

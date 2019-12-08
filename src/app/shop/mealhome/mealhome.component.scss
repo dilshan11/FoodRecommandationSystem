@@ -1,0 +1,28 @@
+a:link {
+    color:black;
+  }
+ 
+
+  .mdiv{
+      margin-top: 100px;
+    //   background-image:url(../../../assets/2moring.jpg) ;
+  }
+  .mmdiv{
+      height: 100px;
+      width: 100%;
+
+  }
+  .f1div{
+      background-image:url(../../../assets/2moring.jpg) ;
+  }
+  .f2div{
+    background-image:url(../../../assets/breakfast.webp) ;
+}
+  @media only screen and (max-width: 570px) {
+    .mdiv{
+        margin-top: 50px;
+    }
+     .mmdiv{
+
+     }
+}

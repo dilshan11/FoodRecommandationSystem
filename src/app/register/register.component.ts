@@ -16,7 +16,7 @@ export class RegisterComponent implements OnInit {
   shopForm=new FormGroup({
     shownerName:new FormControl('',Validators.required),
     shName:new FormControl('',Validators.required),
-    shtel:new FormControl('',Validators.required),
+    shtel:new FormControl('',[Validators.required,Validators.pattern("^[0-9]*$")]),
     shaddress:new FormControl('',Validators.required),
     shemail:new FormControl('',Validators.email),
     shpassword:new FormControl('',Validators.required),
@@ -28,11 +28,11 @@ export class RegisterComponent implements OnInit {
   validatingForm = new FormGroup({
     stuname: new FormControl('', Validators.required),
     stuemail: new FormControl('', Validators.email),
-     stuheight: new FormControl('', Validators.required),
-      stuage:new FormControl('',Validators.required),
-      stuweight:new FormControl('',Validators.required),
-      gender:new FormControl('',Validators.required),
-
+     stuheight: new FormControl('', [Validators.required,Validators.pattern("^[0-9]*$")]),
+      stuage:new FormControl('',[Validators.required,Validators.pattern("^[0-9]*$")]),
+      stuweight:new FormControl('',[Validators.required,Validators.pattern("^[0-9]*$")]),
+      gender:new FormControl('male',Validators.required),
+      activelevel:new FormControl('1',Validators.required),
       password: new FormControl('', Validators.required),
       
       repassword: new FormControl('', Validators.required)
@@ -43,7 +43,7 @@ export class RegisterComponent implements OnInit {
   constructor(private studentservice:StudentService,private foodproviderservice:FoodproviderService) { }
 
   ngOnInit() {
- 
+     
  }
   reformatestudent(){
     let  student={
@@ -53,7 +53,8 @@ export class RegisterComponent implements OnInit {
       email: this.validatingForm.get('stuemail').value,
       stuheight:Number.parseFloat(this.validatingForm.get('stuheight').value),
       stuweight:Number.parseFloat(this.validatingForm.get('stuweight').value),
-      gender:this.validatingForm.get('gender').value=="male"?1:0
+      gender:this.validatingForm.get('gender').value=="male"?1:0,
+      activelevel:Number.parseInt( this.validatingForm.get('activelevel').value)
   }
   return student;
 }
@@ -71,6 +72,7 @@ reformatsfoodproviders(){
 
 
 studentClick(divshop,divstudent){
+  
   this.who=true;
   divstudent.style.backgroundColor="#004d40";
   divshop.style.backgroundColor="#00acc1";
@@ -83,31 +85,64 @@ shopClick(divshop,divstudent){
 
   
 }
+message:any="";
 
   getRegister(frame){
    
-    frame.hide();
-    if(this.who){
+    if(this.who){ 
+      if( this.validatingForm.get('password').value== this.validatingForm.get('repassword').value && this.validatingForm.valid){
     this.studentservice.studentRegister(this.reformatestudent()).
     subscribe(data=>{
-      console.log(data);
+       this.message=data;
       if(data=='successfull'){
+        
         frame.hide();
-        console.log(this.isregistered);
       }
+      // else{
+      //   alert("try again something is wrong\n"+data);
+      // }
     });
+  }else{
+     if (this.validatingForm.invalid){
+      alert("something is wrong try again");
+    }
+    else if(this.validatingForm.get('password').value!= this.validatingForm.get('repassword').value){
+      console.log(this.validatingForm.get('password'));
+      console.log(this.validatingForm.get('repassword'));
+      alert("you password is not right");
+    }
+    
+    else if(this.message!=undefined){
+      alert(this.message);
+    }
+   
+    }
   }
+
   else{
+    if(this.shopForm.valid && this.shopForm.get('shpassword').value== this.shopForm.get('shrepassword').value){
    this.foodproviderservice.makeRegister(this.reformatsfoodproviders()).
    subscribe(data=>{
-     console.log(data);
      if(data=='successfull'){
+       this.message=data;
       this.isregistered=false;
-      console.log(this.isregistered);
+      frame.hide();
 
     }
    })
+    }else{
+        if(this.shopForm.invalid){
+          alert("something is wrong try again")
+        }
+        else if(this.shopForm.get('shpassword').value!= this.shopForm.get('shrepassword').value){
+          alert("you password is not right");
+        }
+        else if(this.message!=undefined){
+          alert(this.message);
+        }
     }
+  }
+    
   }
 
 // shopform get start here
@@ -165,5 +200,9 @@ shopClick(divshop,divstudent){
   }
   get repassword() {
     return this.validatingForm.get('repassword');
+  }
+
+  get activelevel(){
+    return this.validatingForm.get('activelevel');
   }
 }

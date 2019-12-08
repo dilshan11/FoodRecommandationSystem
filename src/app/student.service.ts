@@ -9,7 +9,7 @@ export class StudentService {
   constructor(private httpClient:HttpClient) { }
 
   studentRegister(regstudent){
-    console.log(regstudent);
+   
     return this.httpClient.post('http://localhost:8080/student/Register',regstudent,{responseType:'text'});
   }
 
