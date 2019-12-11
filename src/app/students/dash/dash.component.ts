@@ -1,19 +1,33 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, ViewChildren } from '@angular/core';
 import { StudataService } from '../studata.service';
+import { FormGroup, FormControl } from '@angular/forms';
+import { FoodproviderService } from 'src/app/foodprovider.service';
 
 @Component({
   selector: 'app-dash',
   templateUrl: './dash.component.html',
   styleUrls: ['./dash.component.scss']
 })
-export class DashComponent implements OnInit {
+export class DashComponent implements OnInit  {
+ 
 
   calori;
   bmiType;
   bmi:number=0;
   manversion:boolean=true;
   student:any;
-  constructor(private stddataservice:StudataService) { }
+
+  food;
+  listview=false;
+  refoodlist;
+  foodcalorie;
+  lastfoodcalorie;
+  choosenfoodlist=[];
+  amount=0;
+  foodForm=new FormGroup({
+    food:new FormControl()
+  });
+  constructor(private stddataservice:StudataService,private foodprovide:FoodproviderService) { }
 
   ngOnInit() {
    
@@ -24,6 +38,64 @@ export class DashComponent implements OnInit {
    this.manversion=this.deside_manversion();            // change image base on gender
     console.log(this.student);
   }
+   
+
+  onkeyup(event,fdin){
+    console.log(event);
+    this.food={
+      'query':fdin.value
+    }
+    this.listview=true;
+    this.foodprovide.getfoodlist(this.food).
+    subscribe(data=>{
+      // console.log(data);
+      this.refoodlist=data;
+      this.refoodlist=this.refoodlist.common.slice(0,2);
+      
+      // console.log(this.refoodlist);
+   
+    });
+    
+  }
+  listClick(food,fdin){
+    console.log(food.food_name);
+    let yts={
+      "query":food.food_name,
+      "timezone":"US/Eastern"
+    }
+    this.foodprovide.getcaloricount(yts).
+    subscribe(data=>{
+      this.foodcalorie=data;
+      console.log(this.foodcalorie.foods[0].nf_calories);
+      this.lastfoodcalorie=this.foodcalorie.foods[0].nf_calories;
+    });
+    fdin.value=food.food_name;
+    this.listview=false;
+  }
+
+  addfood(fdin){
+    let food={
+      fname:fdin.value,
+      fcalori:this.lastfoodcalorie
+    }
+   
+     this.choosenfoodlist.push(food);
+     fdin.value=null;
+     this.lastfoodcalorie=null;
+     this.amount=0;
+      for(let a of this.choosenfoodlist){
+        this.amount=this.amount+a.fcalori;
+      }
+      // this.dataservice.changeMessage(this.choosenfoodlist);
+  }
+  
+
+
+
+
+
+
+
 
   deside_manversion(){
    return this.student.gender==1?true:false;
