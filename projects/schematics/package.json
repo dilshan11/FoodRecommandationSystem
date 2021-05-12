@@ -18,7 +18,7 @@
     "@types/chart.js": "^2.7.40",
     "@types/jasmine": "^2.6.0",
     "@types/node": "^8.0.31",
-    "chart.js": "^2.7.2",
+    "chart.js": "^2.9.4",
     "font-awesome": "~4.7.x",
     "hammerjs": "~2.0.8",
     "jasmine": "^2.8.0",
